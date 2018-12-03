@@ -19,10 +19,12 @@ FROM       alpine:latest
 #             -e MOUNTPOINT=/mnt/host/mnt/nfs-1 \
 #                nfs-client
 
+COPY resources/ /
+
 #to enable nfs4 simply switch the FSTYPE to nfs4 and set nfsvers=4 
-ENV FSTYPE nfs
-ENV MOUNT_OPTIONS nfsvers=3
-ENV MOUNTPOINT /mnt/nfs-1
+ENV FSTYPE nfs4
+ENV MOUNT_OPTIONS nfsvers=4
+ENV MOUNTPOINT /mnt/storage
 
 RUN apk update && apk add --update nfs-utils && rm -rf /var/cache/apk/*
 
